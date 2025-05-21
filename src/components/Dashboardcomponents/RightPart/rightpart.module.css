@@ -2,26 +2,27 @@
 .topContainer{
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  align-items: center;
 }
 
 .profile{
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-image: url('../../../../public/images/download\ \(2\).png');
   background-size: cover;
   background-position: center;
-  border: 3px solid #202D48;
+  border: 2px solid #202D48;
   cursor: pointer;
 }
 
 .btn{
   outline: none;
-  margin-right: 20px;
+  margin-right: 10px;
   padding: 5px;
-  width: 150px;
-  height: 50px;
+  width: 120px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,27 +30,27 @@
   border: none;
   background-color: #202D48;
   color: white;
-  gap: 10px;
-  font-size: 18px;
+  gap: 8px;
+  font-size: 15px;
   cursor: pointer;
 }
 
 .cri{
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .bottomContainer{
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin-top: 30px;
 }
 
 .from , .to{
   outline: none;
-  padding: 10px;
-  width: 200px;
+  padding: 2px 10px;
+  width: 180px;
   min-width: 100px;
-  height: 40px;
+  height: 35px;
   border-radius: 5px;
   border: 1px solid #9D9D9F;
 }
