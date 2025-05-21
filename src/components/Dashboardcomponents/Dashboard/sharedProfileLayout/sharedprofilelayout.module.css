@@ -8,8 +8,8 @@
 }
 
 .outerContainer h3{
-  font-size: 35px;
-  padding: 30px;
+  font-size: 25px;
+  padding: 15px;
 }
 
 .outerCard{
@@ -17,61 +17,56 @@
   height: 100%;
   background-color: #F2F6FF;
   box-shadow: 0 -10px 10px -10px rgba(0, 0, 0, 0.3);
-  padding: 50px;
+  padding: 30px;
 }
 
 .card{
   width: 100%;
-  height: 40%;
+  height: 300px;
   display: flex;
   justify-content: space-between;
 }
 
-.picWidth{
-  width: 800px;
-}
 
 .picWidth h2{
   margin:10px 50px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .pic{
-  width:280px;
   position: relative;
 }
 
 .pic img{
-  width: 280px;
+  width: 250px;
   border-radius: 50%;
 }
 
 .cards{
   width: 50%;
   display: flex;
-  gap: 100px;
+  gap: 30px;
   margin-left: 50px;
   justify-content: center;
   align-items: center;
 }
 
 .content{
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 150px;
   display: flex;
   flex-direction: column;
 }
 
 .textS ,.textI ,  .textC {
-  padding: 50px;
+  padding: 40px ;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   border-radius: 15px;
 }
-
 
 .textS{
   border: 5px solid #17A2B8;
@@ -92,13 +87,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  font-size: 25px;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
 .UserInfo{
-  margin-top: 50px;
-  padding: 50px;
+  margin-top: 10px;
+  padding: 20px;
   background-color: white;
   border-radius: 15px;
 }
@@ -109,30 +104,30 @@
 }
 
 .emailIcon{
-  font-size: 25px;
+  font-size: 17px;
 }
 
 .emailLabel{
   margin-left: 5px;
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .emailFeild{
   margin-left: 60px;
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .logOut{
-  margin-top: 50px;
-  padding: 30px;
+  margin-top: 10px;
+  padding: 20px;
   display: flex;
   justify-content: flex-end;
 }
 
 .logOut button {
-  width: 150px;
-  height: 60px;
-  font-size: 20px;
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
   padding: 10px;
   border: 2px solid #202D48;
   border-radius: 10px;
