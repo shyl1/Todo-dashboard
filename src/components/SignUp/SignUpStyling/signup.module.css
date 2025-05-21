@@ -1,21 +1,20 @@
 .Container{
   width: 100%;
-  margin: 300px auto;
+  margin: 70px auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .LoginContainer{
-  width: 600px;
+  width: 500px;
   height: auto;
   display: flex;
   justify-content: center;
-
 }
 
 .form{
-  padding: 20px 70px;
+  padding: 20px 40px;
   width: 100%;
   background-color: #F2F6FF;
   border: 3px solid #C4D0EB;
@@ -27,9 +26,8 @@
 }
 
 .text{
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-size: 30px;
+  margin: 20px 0;
+  font-size: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,24 +35,23 @@
 
 .nameContainer{
   width: 100%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 20px 0;
   position: relative;
 }
 
 .emailConatiner {
   width: 100%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 20px 0;
   position: relative;
 }
 
 .passwordContainer{
   width: 100%;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 10px;
   position: relative;
 }
+
 .checkContainer{
   width: 100%;
   margin-top: 5px;
@@ -62,19 +59,17 @@
   position: relative;
 }
 
-
 .btnContainer{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .OR{
   margin-top: 20px;
   color: #202D48;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   position: relative;
 }
@@ -101,7 +96,8 @@
 
 .loginOption{
   color: #86838388;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 12px;
 }
 
 .login{
