@@ -30,7 +30,7 @@ This is a **TodoList application** built with **ReactJS**. It provides users wit
 
 
   deplolment link:
-  -- todo-dash.netlify.app
+  --[ todo-dash.netlify.app](https://todo-dash.netlify.app/)
 
 
 
