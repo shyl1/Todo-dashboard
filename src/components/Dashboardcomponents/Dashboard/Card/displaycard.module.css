@@ -1,0 +1,77 @@
+.card{
+  width: 100%;
+  border: 1px solid #C4D0EB;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  background-color: white;
+}
+
+.textContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title{
+  font-size: 18px;
+}
+
+.iconContainer{
+  position: relative;
+}
+
+.editingIcon{
+  font-size: 20px;
+  color: #53535383;
+  cursor: pointer;
+}
+
+.edit{
+  position: absolute;
+  width: 100px;
+  height: 70px;
+  border: 1px solid #C4D0EB;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.btn{
+  outline: none;
+  border: none;
+  text-align: left;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.btn:hover{
+  background-color:#C4D0EB;
+}
+
+.content{
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #53535383;
+}
+
+.taskDate{
+  color: #53535383;
+  font-size: 12px;
+}
+
+
+@media (max-width: 1409px) {
+  .card{
+    padding: 10px;
+  }
+
+  .editingIcon{
+    font-size: 15px;
+  }
+}

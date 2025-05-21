@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import styles from '../../dashboardStyling/tasksStyling/tostart.module.css';
+import styles from '../Card/displaycard.module.css';
 import { RiEditLine } from "react-icons/ri";
 import TaskContext from '../../../TaskContext';
 
@@ -34,7 +34,10 @@ export default function DisplayCard({task}) {
     <>
       <div className={styles.card} key={task.id} draggable onDragStart={(e)=> handleDragStart(e, task.id)}>
         <div className={styles.textContainer}>
+          {/* title */}
           <h2 className={styles.title}>{task.title}</h2>
+
+          {/* Dropdown icon */}
           <div className={styles.iconContainer}>
             <RiEditLine className={styles.editingIcon} onClick={() => setIsDropdownOpen(!isDrodownOpen)}/>
               {/*Dropdown Menu*/}
@@ -45,6 +48,7 @@ export default function DisplayCard({task}) {
               </div>
               )}
           </div>
+          
         </div>
 
         <div className={styles.content}>

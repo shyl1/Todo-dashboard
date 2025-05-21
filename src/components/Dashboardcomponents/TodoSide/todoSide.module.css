@@ -8,19 +8,17 @@
 }
 
 .parts{
-  padding: 20px 20px;
+  padding: 20px 10px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
-  margin-top: 20px;
+  margin: 10px 0;
 }
 
 .tasks{
-  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  gap: 50px;
+  gap: 20px;
   width: 100%;
   height: 100%;
 }
