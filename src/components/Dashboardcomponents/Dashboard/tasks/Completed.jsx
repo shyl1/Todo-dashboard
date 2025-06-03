@@ -3,7 +3,7 @@ import { FaCircle } from "react-icons/fa";
 import ShowForm from '../Card/ShowForm';
 import DisplayCard from '../Card/DisplayCard';
 import { useContext } from 'react';
-import TaskContext from '../../../TaskContext';
+import TaskContext from '../../../../ContextAPI/TaskContext';
 
 export default function Completed() {
   const {tasks , showForm , formColumn , editingTask , addOrUpdateTask , updateTaskStatus , searchTerm , toDate ,fromDate ,setFormColumn ,setShowForm , formRef} = useContext(TaskContext);

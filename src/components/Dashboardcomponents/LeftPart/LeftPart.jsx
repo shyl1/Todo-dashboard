@@ -1,7 +1,7 @@
 import { CiSearch } from "react-icons/ci";
 import styles from'./leftpart.module.css';
 import { useContext } from "react";
-import TaskContext from "../../TaskContext";
+import TaskContext from '../../../ContextAPI/TaskContext';
 
 export default function LeftPart() {
 

@@ -1,7 +1,7 @@
 import styles from './rightpart.module.css';
 import { CiCirclePlus } from "react-icons/ci";
 import { useContext } from 'react';
-import TaskContext from '../../TaskContext';
+import TaskContext from '../../../ContextAPI/TaskContext';
 import { Link } from 'react-router-dom';
 
 

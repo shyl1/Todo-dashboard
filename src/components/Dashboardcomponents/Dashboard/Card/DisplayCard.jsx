@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import styles from '../Card/displaycard.module.css';
 import { RiEditLine } from "react-icons/ri";
-import TaskContext from '../../../TaskContext';
+import TaskContext from '../../../../ContextAPI/TaskContext';
 
 export default function DisplayCard({task}) {
   const {setEditingTask , setTitle , setDescription , setShowForm , setFormColumn  , deleteTask} = useContext(TaskContext);

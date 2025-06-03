@@ -1,9 +1,9 @@
 import styles from '../sharedProfileLayout/sharedprofilelayout.module.css';
 import { SlEnvolope } from "react-icons/sl";
 import { useContext, useEffect } from 'react';
-import TaskContext from '../../../TaskContext';
-import UserContext from '../../../UserContext';
-import AuthContext from '../../../AuthenticationContext'
+import TaskContext from '../../../../ContextAPI/TaskContext';
+import UserContext from '../../../../ContextAPI/UserContext';
+import AuthContext from '../../../../ContextAPI/AuthenticationContext'
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {

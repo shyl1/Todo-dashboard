@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 
 //importing AuthContext that has shared validation logic
-import  AuthContext  from '../../AuthenticationContext';
+import  AuthContext  from '../../../ContextAPI/AuthenticationContext';
 
 //importing form login components
 import Email from '../../sharedComponents/Email';
