@@ -1,18 +1,20 @@
-//styling
-import { useContext } from 'react';
-import styles from '../SignUpStyling/signup.module.css';
-
-
-import  AuthContext  from '../../../ContextAPI/AuthenticationContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import { useContext } from 'react';
 
 //improting components
 import UserName from "./UserName";
 import Email from '../../sharedComponents/Email';
 import Password from '../../sharedComponents/Password';
-import ButtonSignUp from './ButtonSignUp';
 import SignUpWithGoogle from './SignUpWithGoogle.jsx';
+import Button from '../../sharedComponents/Button.jsx';
+
+//import context api
+import  AuthContext  from '../../../ContextAPI/AuthenticationContext.jsx';
+
+//styling
+import styles from '../SignUpStyling/signup.module.css';
+
 
 
 export default function SignUp() {
@@ -105,9 +107,10 @@ export default function SignUp() {
         <div className={styles.passwordContainer}>
           <Password password={password} setPassword={setPassword} isPasswordValid={isPasswordValid}/>
         </div>
+
         {/* sgin up btn */}
         <div className={styles.btnContainer}>
-          <ButtonSignUp type="submit" />
+          <Button type="submit" name="SignUp"/>
         </div>
 
         <div className={styles.OR}>

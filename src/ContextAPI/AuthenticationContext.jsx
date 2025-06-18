@@ -1,4 +1,4 @@
-import {auth} from "../Firebase/firebase";
+import {auth, db} from "../Firebase/firebase";
 
 import {
   createUserWithEmailAndPassword,
@@ -7,26 +7,28 @@ import {
   signOut,
   updateProfile,  
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 import { createContext, useEffect, useState } from "react";
 
+
 const AuthContext = createContext();
+
 
 function AuthProvider({ children }){
   // store user data after login / signup
   const [user , setUser] = useState(null);
-  //const [user , setUser] = useState('')
 
   // track authentication status 
   const [isAuthenticated , setIsAuthenticated] = useState(false);
 
-  // //loading state 
-  // const [loading, setLoading] = useState(true);
+  //loading state 
+  const [loading, setLoading] = useState(true);
 
 
   // init auth state listener
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth , (firebaseUser)=> {
+    const unsubscribe = onAuthStateChanged(auth , async (firebaseUser)=> {
       if(firebaseUser){
         setUser({
           uid: firebaseUser.uid,
@@ -38,7 +40,7 @@ function AuthProvider({ children }){
         setUser(null);
         setIsAuthenticated(false);
       }
-      // setLoading(false); // Set loading to false after checking auth state
+      setLoading(false); // Set loading to false after checking auth state
     });
 
     return () => unsubscribe(); //clean up function to unsubscribe from the listener
@@ -64,56 +66,64 @@ function AuthProvider({ children }){
   // signup function
   async function signUp(email, password, username) {
     try {
-      const userCredentail = await createUserWithEmailAndPassword(auth , email , password);
-
-
+      const userCredential = await createUserWithEmailAndPassword(auth , email , password);
+    
       // Update the user's profile with the username
-      await updateProfile(userCredentail.user , {
+      await updateProfile(userCredential.user , {
         displayName: username,
       });
 
-      // update user state 
-      setUser({
-        uid: userCredentail.user.uid,
-        email: userCredentail.user.email,
-        name: userCredentail.user.displayName,
+      // create a firebase user document in the database 
+      await setDoc(doc(db , "users", userCredential.user.uid), {
+        email: userCredential.user.email,
+        name : username,
+        profileCompleted: true,
       });
 
-      setIsAuthenticated(true);
+      // // update user state 
+      // setUser({
+      //   uid: userCredential.user.uid,
+      //   email: userCredential.user.email,
+      //   name: userCredential.user.displayName,
+      // });
 
-      return userCredentail; 
+      // setIsAuthenticated(true);
+
+      return { success: true ,user: userCredential.user }; 
     } catch (error){
-      throw new Error(error.message);
+      return { success: false, error: error.message };
     }
   }
 
    // Login function
   async function login(email, password) {
     try {
-      const userCredentail = await signInWithEmailAndPassword(auth, email, password);
-
-      // Update user state
-      setUser({
-        uid: userCredentail.user.uid,
-        email: userCredentail.user.email,
-        name: userCredentail.user.displayName,
-      });
-      setIsAuthenticated(true);
-
-      return userCredentail; // Return the user credential for further use if needed
-    } catch (error) {
-      throw new Error(error.message);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // The onAuthStateChanged listener will handle the user state update
+      return { success: true ,user: userCredential.user }; 
+    } catch (error){
+      return { 
+      success: false, 
+      error: {
+        code: error.code.replace('auth/', ''), // Remove 'auth/' prefix
+        message: error.message
+      }
+    };
     }
   }
+
+
+
     
   // Logout function
   async function logout() {
     try {
       await signOut(auth);
-      setUser(null);
-      setIsAuthenticated(false);
+      // setUser(null);
+      // setIsAuthenticated(false);
+      return { success: true };
     } catch (error) {
-      throw new Error(error.message);
+      return { success: false, error: error.message };
     }
   }
     
@@ -121,14 +131,13 @@ function AuthProvider({ children }){
     <AuthContext.Provider 
     value={{
       isAuthenticated,
-      setIsAuthenticated,
       user,
-      setUser,
       validateEmail,
       validatePassword,
       login,
       logout,
       signUp,
+      loading,
       }}>
       {children}
     </AuthContext.Provider>

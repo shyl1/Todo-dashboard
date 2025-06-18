@@ -8,9 +8,10 @@
 
 .LoginContainer{
   width: 500px;
-  height: 520px;
+  height: auto;
   display: flex;
   justify-content: center;
+
 }
 
 .form{
@@ -25,12 +26,22 @@
   border-radius: 5px;
 }
 
+.con{
+  margin: 20px 0;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .text{
   margin: 20px 0;
   font-size: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .loginIcon{
@@ -109,4 +120,11 @@
   .Container{
     margin: 150px auto;
   }
+}
+
+
+.errorMsg{
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }

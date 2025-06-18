@@ -12,15 +12,15 @@ import  AuthContext  from '../../../ContextAPI/AuthenticationContext';
 //importing form login components
 import Email from '../../sharedComponents/Email';
 import Password from '../../sharedComponents/Password';
-import ButtonLogin from './ButtonLogin';
 import LoginWithGoogle from './LoginWithGoogle';
 import LoginIcon from '@mui/icons-material/Login';
+import Button from '../../sharedComponents/Button';
 
 
 
 export default function Login() {
 
-  const {validateEmail , validatePassword , login , isAuthenticated, checkUserExists}= useContext(AuthContext);
+  const {validateEmail , validatePassword , login , user , isAuthenticated }= useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -29,60 +29,85 @@ export default function Login() {
   const [email , setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
 
+  // paseeword
   const [password , setPassword] = useState('');
   const [isPasswordValid ,setIsPasswordValid] = useState(true);
 
   // for user existing errors 
-  const [passwordError, setPasswordError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   // Redirect if already logged in
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && user) {
       navigate("/dashboard");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, user, navigate]);
 
-  function handleSubmit(e) {
+  // form Submission handler
+  async function handleSubmit(e) {
     e.preventDefault();
-    const isValidEmail = validateEmail(email);
-    const isValidPassword = validatePassword(password);
+  
+    // Validate inputs
+    const emailError = validateEmail(email);
+    const passwordError = validatePassword(password);
 
-    setIsEmailValid(isValidEmail);
-    setIsPasswordValid(isValidPassword);
+    setIsEmailValid(!emailError);
+    setIsPasswordValid(!passwordError);
 
-    if (isValidEmail || isValidPassword) {
+    if (emailError || passwordError) {
       return; // Stop if validation fails
     }
 
-    //check if the user exists
-    const userExists = checkUserExists(email);
-    if(!userExists){
-      setErrorMessage("User not found. Please sign up.");
-      setTimeout(() => {
+    const result =await login(email , password);
+    if (result.success) {
+      if (result.profileCompleted) {
+        navigate("/dashboard");
+      } else {
         navigate("/signup");
-      },1000);
-      return;
+      }
+    } else {
+      setPassword(''); // Clear password field on error
+      setEmail(''); // Clear email field on error
+      handleLoginError(result.error); 
     }
-    //attemp to log in
-  try {
-    login(email, password);
-    navigate("/dashboard");
-  } catch (error){
-    setErrorMessage("invalid email or password");
-  }
-  
   }
 
-  //   if (isValidEmail && isValidPassword) {
-  //     //console.log("Setting isAuthenticated to true");
-  //     login(); // Set authentication state
-  //     navigate("/dashboard");
-  //   }
-  //  //logout();
-  // }
 
-  
+  function handleLoginError(error){
+    let userFriendlyMessage = "Login failed. Please try again.";
+
+    // Extract the clean error code without 'auth/' prefix
+    const errorCode = error.code.replace('auth/', '');
+    
+    switch(errorCode){
+      case 'invalid-credential':
+      case 'invalid-login-credentials':
+        userFriendlyMessage = "Invalid email or password. Please check your credentials.";
+        break;
+      case 'wrong-password':
+        userFriendlyMessage = "Incorrect password. Please try again.";
+        break;
+      case 'invalid-email':
+        userFriendlyMessage = "Invalid email format. Please enter a valid email.";
+        break;
+      case 'too-many-requests':
+        userFriendlyMessage = "Too many login attempts. Please try again later.";
+        break;
+      case 'user-disabled':
+        userFriendlyMessage = "This account has been disabled. Please contact support.";
+        break;
+      case 'account-exists-with-different-credential':
+        userFriendlyMessage = "already in use";
+        break;
+      default:
+        userFriendlyMessage = error.message || userFriendlyMessage;
+        break;
+    }
+
+    setErrorMessage(userFriendlyMessage);
+  }
+
+
   function handleClickToSign(){
     navigate("/signup");
   }
@@ -93,18 +118,24 @@ export default function Login() {
       <div className={styles.LoginContainer}>
         <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.text}>
-          <LoginIcon className={styles.loginIcon} sx={{fontSize:50}}/>
-          <h1>Login</h1>
+          <div className={styles.con}>
+            <LoginIcon className={styles.loginIcon} sx={{fontSize:50}}/>
+            <h1>Login</h1>
+          </div>
+
+          {/* display error */}
+          {errorMessage && <p className={styles.errorMsg}>{errorMessage}</p>}
         </div>
+        {/* login form */}
         <div className={styles.emailConatiner}>
           <Email email={email} setEmail={setEmail} isEmailValid={isEmailValid}/>
         </div>
         <div className={styles.passwordContainer}>
           <Password password={password} setPassword={setPassword} isPasswordValid={isPasswordValid}/>
         </div>
-        {errorMessage && <p className={styles.errorMsg}>{errorMessage}</p>}
+        {/* login btn */}
         <div className={styles.btnContainer}>
-          <ButtonLogin type="submit" />
+          <Button type="submit" name="Login" />
         </div>
         <div className={styles.OR}>
           OR
