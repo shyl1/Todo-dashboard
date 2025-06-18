@@ -3,12 +3,15 @@ import { CiCirclePlus } from "react-icons/ci";
 import { useContext } from 'react';
 import TaskContext from '../../../ContextAPI/TaskContext';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../ContextAPI/AuthenticationContext';
 
 
 export default function RightPart() {
 
   
   const {setShowForm , setFormColumn , fromDate , setFromDate , toDate , setToDate} = useContext(TaskContext);
+
+  const {user} = useContext(AuthContext);
 
  // function to handle clicking on the newtask button
     function handleClick(e){
@@ -29,7 +32,7 @@ export default function RightPart() {
       </button>
 
       <Link to="/dashboard/profile">
-      <div className={styles.profile}></div>
+      <img src={user?.img} className={styles.profile}/>
       </Link>
       
     </div>

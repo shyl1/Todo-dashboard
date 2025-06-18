@@ -34,6 +34,7 @@ function AuthProvider({ children }){
           uid: firebaseUser.uid,
           email: firebaseUser.email,
           name: firebaseUser.displayName,
+          img: firebaseUser.photoURL || '/src/assets/Default.jpeg'
         });
         setIsAuthenticated(true);
       } else {
@@ -73,23 +74,25 @@ function AuthProvider({ children }){
         displayName: username,
       });
 
+      await auth.currentUser.reload();
+      const updatedUser = auth.currentUser;
+
       // create a firebase user document in the database 
-      await setDoc(doc(db , "users", userCredential.user.uid), {
-        email: userCredential.user.email,
+      await setDoc(doc(db , "users", updatedUser.uid), {
+        email: updatedUser.email,
         name : username,
         profileCompleted: true,
+        img: updatedUser.photoURL || '/src/assets/Default.jpeg',
       });
 
-      // // update user state 
-      // setUser({
-      //   uid: userCredential.user.uid,
-      //   email: userCredential.user.email,
-      //   name: userCredential.user.displayName,
-      // });
+      // update user state 
+      setUser({
+        uid: updatedUser.uid,
+        email: updatedUser.email,
+        name: updatedUser.displayName,
+      });
 
-      // setIsAuthenticated(true);
-
-      return { success: true ,user: userCredential.user }; 
+      return { success: true ,user: updatedUser }; 
     } catch (error){
       return { success: false, error: error.message };
     }
@@ -132,6 +135,7 @@ function AuthProvider({ children }){
     value={{
       isAuthenticated,
       user,
+      setUser,
       validateEmail,
       validatePassword,
       login,
