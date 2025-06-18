@@ -32,13 +32,15 @@
   position: absolute;
   width: 100px;
   height: 70px;
-  border: 1px solid #C4D0EB;
+  border: 1px solid white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
-  background-color: white;
+  background-color: #C4D0EB;
   border-radius: 10px;
+  top: 15px;
+  right: -10px;
 }
 
 .btn{
@@ -51,7 +53,7 @@
 }
 
 .btn:hover{
-  background-color:#C4D0EB;
+  background-color:white;
 }
 
 .content{

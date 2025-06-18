@@ -3,15 +3,12 @@ import { SlEnvolope } from "react-icons/sl";
 import { IoCameraOutline } from "react-icons/io5";
 import { useContext, useEffect } from 'react';
 import TaskContext from '../../../../ContextAPI/TaskContext';
-//import UserContext from '../../../../ContextAPI/UserContext';
 import AuthContext from '../../../../ContextAPI/AuthenticationContext'
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
 
   const {ToStartCounts ,InProgressCounts , CompletedCounts} = useContext(TaskContext);
-
-  //const {user} =useContext(UserContext);
 
   const {logout , user
   } = useContext(AuthContext);

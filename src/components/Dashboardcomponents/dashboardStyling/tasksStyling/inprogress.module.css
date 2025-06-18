@@ -53,13 +53,14 @@
   scrollbar-color: #ddd transparent;
 }
 
+
 @media (max-width: 1409px) {
   .text{
-    font-size:20px;
+    font-size:14px;
   }
 
   .circleIcon{
-    font-size: 15px;
+    font-size: 10px;
   }
 
   .innerContainer{
