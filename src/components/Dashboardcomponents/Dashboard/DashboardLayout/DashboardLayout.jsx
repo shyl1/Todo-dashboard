@@ -5,6 +5,8 @@ import { Outlet } from "react-router-dom";
 
 
 export default function DashboardLayout() {
+
+
   return (
     <div className={styles.body}>
       <SideBar />
